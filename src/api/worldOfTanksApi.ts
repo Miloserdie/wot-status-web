@@ -1,26 +1,46 @@
 import axios from "axios";
+import {IndividualPlayer} from "../types";
 
-const wotAuthUrl = 'https://api.worldoftanks.eu/wot/auth/login/?application_id=347cc9362aafc608559e5892b8e8b98f&display=popup';
+export const getNewUserTokenReq = async (currentToken: string) => {
+    try {
+        const wotNewTokenUrl = `https://api.worldoftanks.eu/wot/auth/prolongate/?application_id=347cc9362aafc608559e5892b8e8b98f`;
 
-export interface UserReqOk {
+        const {data} = await axios.post(wotNewTokenUrl, {
+            access_token: currentToken,
+        }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+        })
+
+        return data;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+type PlayersResSuccess = {
     status: string,
-    access_token: string,
-    nickname: string,
-    account_id: string,
-    expires_at: string
+    meta: {
+        count: number,
+    },
+    data: [IndividualPlayer],
 }
 
-export interface UserReqError {
-    status: string,
-    message: string,
-    code: string
+
+export const getGlobalPlayersReq = async (nickname: string): Promise<PlayersResSuccess> => {
+    try {
+        const playersSearchUrl = `https://api.worldoftanks.eu/wot/account/list/?application_id=347cc9362aafc608559e5892b8e8b98f`
+
+        const {data} = await axios.get(playersSearchUrl, {
+            params: {
+                search: nickname,
+                limit: '10'
+            }
+        });
+
+        return data;
+    } catch (error) {
+        return Promise.reject(error);
+    }
 }
-
-const getWotAuthInfoReq = async (): Promise<UserReqOk | UserReqError> => {
-    const {data} = await axios.get(wotAuthUrl);
-
-    console.log(data)
-    return data;
-}
-
-export default getWotAuthInfoReq;

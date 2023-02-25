@@ -1,0 +1,18 @@
+.player-item {
+  background: rgba(107, 107, 107, 0.37);
+  border-radius: 5px;
+  border: 1px solid rgba(143, 143, 143, 0.56);
+  margin-bottom: 10px;
+  padding: 5px 11px;
+  color: rgb(185, 185, 185);
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nickname {
+    //color: #b9b9b9;
+  }
+}

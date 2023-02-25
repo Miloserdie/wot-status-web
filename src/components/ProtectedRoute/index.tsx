@@ -1,13 +1,13 @@
 import React from 'react';
 import {Navigate} from "react-router-dom";
-import {useAuth} from "../../hooks/useAuth";
+import {checkAuth} from "../../utils/checkAuth";
 
 type ProtectedRouteProps = {
     children: JSX.Element
 }
 
 const ProtectedRoute = ({children}:ProtectedRouteProps): JSX.Element => {
-    const isUserAuth = useAuth();
+    const isUserAuth = checkAuth();
 
     if(!isUserAuth) {
         localStorage.clear();

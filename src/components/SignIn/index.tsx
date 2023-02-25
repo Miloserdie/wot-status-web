@@ -1,18 +1,18 @@
 import './style.scss';
 import React, {useEffect} from 'react';
-import {Navigate, useNavigate} from "react-router-dom";
-import {useAuth} from "../../hooks/useAuth";
+import {useNavigate} from "react-router-dom";
+import {checkAuth} from "../../utils/checkAuth";
 
 type userDataObj = {
     access_token: string | null,
     nickname: string | null,
-    account_id:string | null,
-    expires_at: string | null
+    account_id: number | null,
+    expires_at: number | null
 }
 
 const SignIn = () => {
     const navigate = useNavigate();
-    const isUserAuth = useAuth();
+    const isUserAuth = checkAuth();
 
 
     const handleUserInfo = () => {
@@ -24,9 +24,9 @@ const SignIn = () => {
 
         const userData: userDataObj = {
             access_token: userSearchParams.get('access_token'),
-            account_id: userSearchParams.get('account_id'),
-            expires_at: userSearchParams.get('expires_at'),
-            nickname: userSearchParams.get('nickname')
+            account_id: Number(userSearchParams.get('account_id')),
+            expires_at: Number(userSearchParams.get('expires_at')),
+            nickname: userSearchParams.get('nickname'),
         }
 
         localStorage.setItem('userData', JSON.stringify(userData));
