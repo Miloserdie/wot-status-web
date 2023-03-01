@@ -1,0 +1,24 @@
+.footer {
+  height: 50px;
+  z-index: 2;
+  color: rgba(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px 10px 15px;
+  align-items: center;
+
+  &__clan-emblem {
+    height: 35px;
+  }
+
+  &:before {
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7133228291316527) 52%, rgba(0,0,0,0) 100%);
+  }
+}

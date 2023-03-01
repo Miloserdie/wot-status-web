@@ -6,9 +6,15 @@
 }
 html, body{
     height: 100%;
-    background: url('https://i.pinimg.com/564x/b9/f1/38/b9f13880427fed041afeb020216dc1b8.jpg') 0 0/cover no-repeat;
     font-family: Arial, sans-serif;
 }
 a{
     text-decoration: none;
+}
+
+#root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: url('https://www.digiseller.ru/preview/668029/p1_3154691_92f22995.PNG') 0 0/cover no-repeat;
 }

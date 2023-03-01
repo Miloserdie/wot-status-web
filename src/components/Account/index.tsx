@@ -1,23 +1,29 @@
+import './style.scss';import './style.scss';
 import React, {useEffect} from 'react';
-import Navigation from "../Navigation";
 import {Navigate, Route, Routes} from "react-router-dom";
-import SearchPlayers from "../SearchPlayers";
 import moment from "moment";
 import {getLocalStorage} from "../../utils/getLocalStorage";
-import {getNewUserTokenReq} from "../../api/worldOfTanksApi";
+import {getNewUserDataReq} from "../../api/worldOfTanksApi";
 import {UserData} from "../../types";
+import ClanReservesInfo from "../ClanReservesInfo";
+import Header from "../Header";
+import Footer from "../Footer";
 
 const Account = () => {
     const userStorage = getLocalStorage();
 
-    const handleNewUserToken = async () => {
-        const {data} = await getNewUserTokenReq(userStorage.access_token);
+    const handleNewUserData = async () => {
+        const data = await getNewUserDataReq(userStorage.access_token);
 
         const newUserData: UserData = {
             access_token: data.access_token,
             account_id: data.account_id,
             expires_at: data.expires_at,
-            nickname: userStorage.nickname
+            nickname: userStorage.nickname,
+            clan_id: userStorage.clan_id,
+            clan_tag: userStorage.clan_tag,
+            clan_emblem: userStorage.clan_emblem,
+            clan_name: userStorage.clan_name
         }
 
         localStorage.setItem('userData', JSON.stringify(newUserData));
@@ -27,20 +33,19 @@ const Account = () => {
         const userTokenTime = moment().diff(userStorage.expires_at * 1000, "days");
 
         if (userTokenTime > 7 && userTokenTime < 13) {
-            void handleNewUserToken();
+            void handleNewUserData();
         }
     }, [])
     return (
         <>
-            <main className={'account'}>
+            <Header />
+            <main className={'main'}>
                 <Routes>
-                    <Route path={''} element={<Navigate replace to={'playerInfo'} />}/>
-                    <Route path={'playerInfo'} element={<div>playerInfo</div>}/>
-                    <Route path={'clanInfo'} element={<div>clanInfo</div>}/>
-                    <Route path={'searchPlayers'} element={<SearchPlayers />}/>
+                    <Route path={''} element={<Navigate replace to={'clanReservesInfo'} />}/>
+                    <Route path={'clanReservesInfo'} element={<ClanReservesInfo />}/>
                 </Routes>
             </main>
-            <Navigation />
+            <Footer />
         </>
     );
 };

@@ -1,0 +1,47 @@
+.clan-reserves-item {
+  color: rgba(255, 255, 255,);
+  background: rgba(38, 38, 38, 0.25);
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px 15px 5px 15px;
+  border: 1px solid rgba(152, 152, 152, 0.5);
+
+  &:has(.clan-reserves-item__in-stock) {
+    &:has(.in-stock-item.active) {
+      border-color: rgb(95, 250, 72);
+      box-shadow: 2px 2px 5px rgb(95, 250, 72);
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+
+  &__name {
+    font-size: 14px;
+    color: rgb(231, 229, 195);
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  &__bonus-name {
+    font-size: 13px;
+    color: #e3e3e3;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__in-stock {
+    overflow: hidden;
+    height: 0;
+
+    &.active {
+      height: 100%;
+    }
+  }
+}

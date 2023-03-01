@@ -2,7 +2,6 @@ import React from 'react';
 import {Routes, Route, Navigate} from "react-router-dom";
 import SignIn from "./components/SignIn";
 import Account from "./components/Account";
-import SearchPlayers from "./components/SearchPlayers";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {

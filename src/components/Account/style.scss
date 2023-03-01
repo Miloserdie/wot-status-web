@@ -1,5 +1,5 @@
-.account {
-  width: 100%;
-  height: 100vh;
-  background: url('https://i.pinimg.com/564x/b9/f1/38/b9f13880427fed041afeb020216dc1b8.jpg');
+.main {
+  max-height: calc(100vh - 100px);
+  flex: 1 1 auto;
+  z-index: 2;
 }
