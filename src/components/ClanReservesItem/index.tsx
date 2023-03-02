@@ -10,17 +10,18 @@ type ClanReservesItemProps = {
 
 const ClanReservesItem = ({reservesItem}: ClanReservesItemProps) => {
     const [isInStockActive, setIsInStockActive] = useState<boolean>(false);
+    const setElementActive = isInStockActive ? 'active' : '';
 
     return (
-        <li onClick={() => setIsInStockActive((prevState) => !prevState)} className={'clan-reserves-item'}>
-            <div className={'clan-reserves-item__top'}>
+        <li  className={'clan-reserves-item'}>
+            <div onClick={() => setIsInStockActive((prevState) => !prevState)} className={'clan-reserves-item__top'}>
                 <div className={'clan-reserves-item__left'}>
                     <h3 className={'clan-reserves-item__name'}>{reservesName(reservesItem.type)}</h3>
                     <p className={`clan-reserves-item__bonus-name`}>{bonusName(reservesItem.type)}</p>
                 </div>
-                <img src="https://img.icons8.com/material-rounded/24/E7E5C3/sort-down.png" alt="sort-down"/>
+                <img className={`clan-reserves-item__img ${setElementActive}`} src="https://img.icons8.com/material-rounded/24/E7E5C3/sort-down.png" alt="sort-down"/>
             </div>
-            <ul className={`clan-reserves-item__in-stock ${isInStockActive ? 'active' : ''}`}>
+            <ul className={`clan-reserves-item__in-stock ${setElementActive}`}>
                 {reservesItem.in_stock.map((inStockItem, index) => {
                     return <ClanReservesInStockItem key={inStockItem.level + index} inStockItem={inStockItem} reserveType={reservesItem.type}/>
                 })}

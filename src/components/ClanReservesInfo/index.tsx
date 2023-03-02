@@ -1,17 +1,26 @@
 import './style.scss';
 import React, {useEffect, useState} from 'react';
-import {getClanIdReq, getClanReservesReq} from "../../api/worldOfTanksApi";
+import {ClanData, getClanReservesReq, logOutReq} from "../../api/worldOfTanksApi";
 import {getLocalStorage} from "../../utils/getLocalStorage";
 import {ClanReserves} from "../../types";
 import ClanReservesItem from "../ClanReservesItem";
+import {useNavigate} from "react-router-dom";
 
-const ClanReservesInfo = () => {
+type UserClanDataProps = {
+    userClanData: ClanData
+}
+
+const ClanReservesInfo = ({userClanData} : UserClanDataProps) => {
     const userStorage = getLocalStorage();
+    const navigate = useNavigate();
     const [clanReserves, setClanReserves] = useState<ClanReserves[]>([]);
 
-    const getClanReserves = async () => {
-        if(!userStorage.clan_id) {
-            return
+    const handleGetClanReserves = async () => {
+
+        if(!userClanData) {
+            await logOutReq(userStorage.access_token);
+            localStorage.clear();
+            return navigate('/si')
         }
 
         const res = await getClanReservesReq(userStorage.access_token);
@@ -21,15 +30,13 @@ const ClanReservesInfo = () => {
         })
 
         setClanReserves(clanLongReserves);
-
-        console.log('clanLongReserves', clanLongReserves)
     }
 
     useEffect(() => {
-        void getClanReserves();
+        void handleGetClanReserves();
     }, [])
 
-    return userStorage.clan_id ? (
+    return (
         <section className={'clan-reserves-info'}>
             <h3 className={'clan-reserves-info__title'}>Кланові резерви</h3>
             <ul className={'clan-reserves-info__list-long'}>
@@ -37,10 +44,6 @@ const ClanReservesInfo = () => {
                     return <ClanReservesItem key={reservesItem.type} reservesItem={reservesItem} />
                 })}
             </ul>
-        </section>
-    ) : (
-        <section className={'clan-not-found'}>
-            <h2 className={'clan-not-found__title'}>Ви не перебуваєте у жодному клані(</h2>
         </section>
     );
 };

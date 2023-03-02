@@ -6,6 +6,7 @@ import moment from "moment";
 import ReservesTimer from "../ReservesTimer";
 import {activateClanReserveReq} from "../../api/worldOfTanksApi";
 import {getLocalStorage} from "../../utils/getLocalStorage";
+import {checkUserPermission} from "../../utils/checkUserPermission";
 
 type ClanReservesInStockItemProps = {
     inStockItem: InStock
@@ -14,19 +15,27 @@ type ClanReservesInStockItemProps = {
 
 const ClanReservesInStockItem = ({inStockItem, reserveType}: ClanReservesInStockItemProps) => {
     const [seconds, setSeconds] = useState<number>(inStockItem.active_till - moment().unix());
-    const [reserveStyleStatus, setReserveStyleStatus] = useState(inStockItem.status === 'active' ? inStockItem.status : '');
-    const [reserveStatusWord, setReserveStatusWord] = useState(inStockStatus(inStockItem.status));
+    const [reserveStyleStatus, setReserveStyleStatus] = useState<string>(inStockItem.status === 'active' ? inStockItem.status : '');
+    const [reserveStatusWord, setReserveStatusWord] = useState<string>(inStockStatus(inStockItem.status));
     const userStorage = getLocalStorage();
-    const isButtonDisabled: boolean = inStockItem.status!=='ready_to_activate';
+    const isButtonDisabled: boolean = inStockItem.status !== 'ready_to_activate';
+    const isUserHavePermission = checkUserPermission(userStorage.account_id);
 
     const handleReserveActivate = async () => {
-        await activateClanReserveReq(userStorage.access_token, inStockItem.level, reserveType);
 
-        setReserveStyleStatus('active');
+        console.log(123)
 
-        setReserveStatusWord('Активований');
+        if(!isUserHavePermission) {
+            return
+        }
 
-        setSeconds(inStockItem.action_time);
+        // await activateClanReserveReq(userStorage.access_token, inStockItem.level, reserveType);
+
+        // setReserveStyleStatus('active');
+        //
+        // setReserveStatusWord('Активований');
+        //
+        // setSeconds(inStockItem.action_time);
     }
 
     return (
@@ -38,7 +47,7 @@ const ClanReservesInStockItem = ({inStockItem, reserveType}: ClanReservesInStock
                 <li className={'left-list-item'}>Таймер: <ReservesTimer setSeconds={setSeconds} seconds={seconds}/></li>
                 <li className={'left-list-item'}>Загальна кількість {inStockItem.amount}</li>
             </ul>
-            <button onClick={handleReserveActivate} className={`in-stock-item__button`} disabled={isButtonDisabled}>Aктивувати</button>
+            <button onClick={handleReserveActivate} className={`in-stock-item__button`} disabled={isButtonDisabled || !isUserHavePermission}>Aктивувати</button>
         </li>
     );
 };

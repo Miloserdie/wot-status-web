@@ -3,6 +3,7 @@ import {Routes, Route, Navigate} from "react-router-dom";
 import SignIn from "./components/SignIn";
 import Account from "./components/Account";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./components/NotFound";
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
                       </ProtectedRoute>
                   }
               />
-              <Route path={'*'} element={<div>404</div>}/>
+              <Route path={'/404PageNotFound'} element={<NotFound />}/>
+              <Route path={'*'} element={<Navigate replace to={'/404PageNotFound'} />}/>
           </Routes>
 
       </>

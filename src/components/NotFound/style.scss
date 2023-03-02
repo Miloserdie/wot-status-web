@@ -1,0 +1,28 @@
+.not-found {
+  background: url("../../assets/images/signIn/sign-in-background-image.jpg");
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    color: rgb(203, 203, 203);
+    margin-bottom: 5px;
+    font-size: 39px;
+
+  }
+
+  &__text {
+    color: rgba(183, 174, 239, 0.94);
+    font-size: 19px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+
+  &__link {
+    color: rgba(255, 255, 255);
+    font-size: 17px;text-decoration: underline;
+  }
+}

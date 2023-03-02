@@ -1,14 +1,16 @@
 import './style.scss';
 import React from 'react';
-import {getLocalStorage} from "../../utils/getLocalStorage";
+import {ClanData} from "../../api/worldOfTanksApi";
 
-const Footer = () => {
-    const userLocalStorage = getLocalStorage();
+type UserClanDataProps = {
+    userClanData: ClanData
+}
 
+const Footer = ({userClanData}: UserClanDataProps) => {
     return (
         <footer className={'footer'}>
-            <h5>{userLocalStorage.clan_name}</h5>
-            <img className={`footer__clan-emblem`} src={userLocalStorage.clan_emblem} alt="clan-emblem"/>
+            <h5>{userClanData?.clan?.name}</h5>
+            <img className={`footer__clan-emblem`} src={userClanData?.clan?.emblems?.x64?.portal} alt="clan-emblem"/>
         </footer>
     );
 };

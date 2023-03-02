@@ -1,12 +1,15 @@
 import './style.scss';
 import React from 'react';
 import {getLocalStorage} from "../../utils/getLocalStorage";
-
 import headerLogOutIcon from '../../assets/images/header/header-log-out-icon.png';
-import {logOutReq} from "../../api/worldOfTanksApi";
+import {ClanData, logOutReq} from "../../api/worldOfTanksApi";
 import {useNavigate} from "react-router-dom";
 
-const Header = () => {
+type UserClanDataProps = {
+    userClanData: ClanData
+}
+
+const Header = ({userClanData}: UserClanDataProps) => {
     const userLocalStorage = getLocalStorage();
     const navigate = useNavigate();
 
@@ -22,10 +25,10 @@ const Header = () => {
         <header className={'header'}>
             <div className={'header__left'}>
                 <h4 className={`header__nickname`}>{userLocalStorage.nickname}</h4>
-                <p className={`header__clan-tag`}>[{userLocalStorage.clan_tag}]</p>
+                <p className={`header__clan-tag`}>[{userClanData?.clan?.tag}]</p>
             </div>
-            <button onClick={handleLogOut} className={`header__log-out-icon`}>
-                <img src={headerLogOutIcon} alt=""/>
+            <button onClick={handleLogOut} className={`header__log-out-button`}>
+                <img src={headerLogOutIcon} alt="log-out-icon"/>
             </button>
         </header>
     );

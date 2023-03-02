@@ -5,10 +5,6 @@ export type UserData = {
     account_id: number
     expires_at: number
     nickname: string
-    clan_id: number
-    clan_tag: string,
-    clan_emblem: string,
-    clan_name: string
 };
 
 export type ClanReserves = {

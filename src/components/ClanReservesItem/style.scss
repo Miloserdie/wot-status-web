@@ -32,16 +32,21 @@
     color: #e3e3e3;
   }
 
+  &__img {
+    &.active {
+      transform: rotate(180deg);
+    }
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
 
   &__in-stock {
-    overflow: hidden;
-    height: 0;
+    display: none;
 
     &.active {
-      height: 100%;
+      display: block;
     }
   }
 }

@@ -1,5 +1,16 @@
-.main {
+.wrapper {
+  background-position: 0 0 ;
+  background-repeat: repeat;
+  background-size: cover;
+  background-image: url("../../assets/images/account/account-bg.png");
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-main {
   max-height: calc(100vh - 100px);
   flex: 1 1 auto;
-  z-index: 2;
+  position: relative;
+  z-index: 5;
 }

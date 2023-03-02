@@ -1,8 +1,8 @@
 import moment from "moment/moment";
-import {UserData} from "../types";
+import {getLocalStorage} from "./getLocalStorage";
 
 export function checkAuth(): boolean {
-    const userData: UserData = JSON.parse(localStorage.getItem('userData') || `{}`);
+    const userStorage = getLocalStorage();
 
-    return !(!userData.access_token || moment().diff(userData.expires_at * 1000, "days") > 13);
+    return !(!userStorage.access_token || moment().diff(userStorage.expires_at * 1000, "days") > 13);
 }
