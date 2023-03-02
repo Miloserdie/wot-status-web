@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {ClanReserves} from "../../types";
 import {bonusName, reservesName} from "../../utils/reservesVocabulary";
 import ClanReservesInStockItem from "../ClanReservesInStockItem";
+import sortDownIcon from '../../assets/images/reserveItem/sort-down.png';
 
 type ClanReservesItemProps = {
     reservesItem: ClanReserves
@@ -19,7 +20,7 @@ const ClanReservesItem = ({reservesItem}: ClanReservesItemProps) => {
                     <h3 className={'clan-reserves-item__name'}>{reservesName(reservesItem.type)}</h3>
                     <p className={`clan-reserves-item__bonus-name`}>{bonusName(reservesItem.type)}</p>
                 </div>
-                <img className={`clan-reserves-item__img ${setElementActive}`} src="https://img.icons8.com/material-rounded/24/E7E5C3/sort-down.png" alt="sort-down"/>
+                <img className={`clan-reserves-item__img ${setElementActive}`} src={sortDownIcon} alt="sort-down"/>
             </div>
             <ul className={`clan-reserves-item__in-stock ${setElementActive}`}>
                 {reservesItem.in_stock.map((inStockItem, index) => {
