@@ -29,13 +29,13 @@ const ClanReservesInStockItem = ({inStockItem, reserveType}: ClanReservesInStock
             return
         }
 
-        // await activateClanReserveReq(userStorage.access_token, inStockItem.level, reserveType);
+        await activateClanReserveReq(userStorage.access_token, inStockItem.level, reserveType);
 
-        // setReserveStyleStatus('active');
-        //
-        // setReserveStatusWord('Активований');
-        //
-        // setSeconds(inStockItem.action_time);
+        setReserveStyleStatus('active');
+
+        setReserveStatusWord('Активований');
+
+        setSeconds(inStockItem.action_time);
     }
 
     return (
