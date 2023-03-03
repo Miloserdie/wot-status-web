@@ -39,14 +39,16 @@ const ClanReservesInfo = ({userClanData} : UserClanDataProps) => {
     }, [])
 
     return (
-        <section className={'clan-reserves-info'}>
-            <h3 className={'clan-reserves-info__title'}>Кланові резерви</h3>
-            <ul className={'clan-reserves-info__list-long'}>
-                {clanReserves.map(reservesItem => {
-                    return <ClanReservesItem key={reservesItem.type} reservesItem={reservesItem} />
-                })}
-            </ul>
-        </section>
+        <div className={'container'}>
+            <section className={'clan-reserves-info'}>
+                <h3 className={'clan-reserves-info__title'}>Кланові резерви</h3>
+                <ul className={'clan-reserves-info__list-long'}>
+                    {clanReserves.map(reservesItem => {
+                        return <ClanReservesItem key={reservesItem.type} reservesItem={reservesItem} />
+                    })}
+                </ul>
+            </section>
+        </div>
     );
 };
 

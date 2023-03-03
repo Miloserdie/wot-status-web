@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {checkAuth} from "../../utils/checkAuth";
 import {getUserClanInfoReq} from "../../api/worldOfTanksApi";
+import wotIcon from '../../assets/images/signIn/world-of-tanks.png'
 
 type userDataObj = {
     access_token: string | null,
@@ -59,7 +60,7 @@ const SignIn = () => {
                 <section className={'sign-in'}>
                     <p className={`sign-in__error ${error ? 'active' : ''}`}>{error}</p>
                     <div className={'sign-in__auth'}>
-                        <img className={'sign-in__icon'} src="https://img.icons8.com/fluency/240/null/world-of-tanks.png" alt="wot-icon"/>
+                        <img className={'sign-in__icon'} src={wotIcon} alt="wot-icon"/>
                         <h1 className={'sign-in__title'}>World of Tanks<br />  Stronghold</h1>
                         <p className={'sign-in__description'}>Застосунок для моніторингу та активації резервів клану</p>
                         <p className={'sign-in__description'}>Все що треба для початку роботи це</p>

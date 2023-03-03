@@ -1,11 +1,16 @@
 .wrapper {
   background-position: 0 0 ;
   background-repeat: repeat;
-  background-size: cover;
-  background-image: url("../../assets/images/account/account-bg.png");
+  background-image: url("../../assets/images/dark-bg.png");
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .account-main {
