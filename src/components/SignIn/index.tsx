@@ -2,7 +2,7 @@ import './style.scss';
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {checkAuth} from "../../utils/checkAuth";
-import {getUserClanInfoReq, logOutReq} from "../../api/worldOfTanksApi";
+import {getUserClanInfoReq} from "../../api/worldOfTanksApi";
 
 type userDataObj = {
     access_token: string | null,

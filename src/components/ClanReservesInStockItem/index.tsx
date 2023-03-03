@@ -23,8 +23,6 @@ const ClanReservesInStockItem = ({inStockItem, reserveType}: ClanReservesInStock
 
     const handleReserveActivate = async () => {
 
-        console.log(123)
-
         if(!isUserHavePermission) {
             return
         }

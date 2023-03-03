@@ -19,7 +19,9 @@ const ClanReservesInfo = ({userClanData} : UserClanDataProps) => {
 
         if(!userClanData) {
             await logOutReq(userStorage.access_token);
+
             localStorage.clear();
+
             return navigate('/si')
         }
 
