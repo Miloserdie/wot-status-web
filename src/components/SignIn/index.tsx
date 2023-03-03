@@ -63,7 +63,7 @@ const SignIn = () => {
                         <h1 className={'sign-in__title'}>World of Tanks<br />  Stronghold</h1>
                         <p className={'sign-in__description'}>Застосунок для моніторингу та активації резервів клану</p>
                         <p className={'sign-in__description'}>Все що треба для початку роботи це</p>
-                        <a className={'sign-in__link'} href={'https://api.worldoftanks.eu/wot/auth/login/?application_id=347cc9362aafc608559e5892b8e8b98f&expires_at=1678396374&redirect_uri=http://localhost:3000/signIn'}>Авторизуватися</a>
+                        <a className={'sign-in__link'} href={'https://api.worldoftanks.eu/wot/auth/login/?application_id=347cc9362aafc608559e5892b8e8b98f&expires_at=1678396374&redirect_uri=https://wot-clan-stronghold.vercel.app/signIn'}>Авторизуватися</a>
                     </div>
                 </section>
                 <section className={'sign-in__info'}>
