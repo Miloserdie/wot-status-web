@@ -34,13 +34,13 @@
   }
 
   &__button {
-    background: rgba(53, 241, 45, 0.07);
+    background: rgba(255, 255, 255, 0.11);
     outline: none;
-    color: rgba(53, 241, 45);
+    color: rgb(253, 253, 253);
     font-weight: bold;
-    border: 1px solid rgba(53, 241, 45);
+    border: 1px solid rgb(255, 255, 255);
     padding: 5px;
-    box-shadow: 1px 1px 2px rgb(103, 103, 103);
+    box-shadow: 1px 1px 2px rgb(197, 197, 197);
 
     &:disabled {
       display: none;

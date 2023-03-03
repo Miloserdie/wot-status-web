@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {checkAuth} from "../../utils/checkAuth";
 import {getUserClanInfoReq} from "../../api/worldOfTanksApi";
-import wotIcon from '../../assets/images/signIn/world-of-tanks.png'
+import wotIcon from '../../assets/images/signIn/world-of-tanks.png';
 
 type userDataObj = {
     access_token: string | null,
