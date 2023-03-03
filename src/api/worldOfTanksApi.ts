@@ -17,7 +17,7 @@ export const getNewUserDataReq = async (currentToken: string): Promise<NewUserDa
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             }
-        })
+        });
 
         return data.data;
     } catch (error) {
@@ -47,6 +47,10 @@ export const logOutReq = async (accessToken: string) => {
 
             await axios.post(logOutUrl, {
                 access_token: accessToken
+            }, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                }
             });
         } catch (error) {
             return Promise.reject(error);
